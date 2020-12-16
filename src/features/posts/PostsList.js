@@ -9,11 +9,11 @@ import {
   selectAllPosts,
   fetchPosts,
   selectPostIds,
-  selectPostById
+  selectPostById,
 } from './postsSlice'
 
 let PostExcerpt = ({ postId }) => {
-  const post = useSelector(state => selectPostById(state, postId))
+  const post = useSelector((state) => selectPostById(state, postId))
 
   return (
     <article className="post-excerpt" key={post.id}>
@@ -31,8 +31,6 @@ let PostExcerpt = ({ postId }) => {
     </article>
   )
 }
-
-PostExcerpt = React.memo(PostExcerpt)
 
 export const PostsList = () => {
   const dispatch = useDispatch()
@@ -52,7 +50,7 @@ export const PostsList = () => {
   if (postStatus === 'loading') {
     content = <div className="loader">Loading...</div>
   } else if (postStatus === 'succeeded') {
-    content = orderedPostIds.map(postId => (
+    content = orderedPostIds.map((postId) => (
       <PostExcerpt key={postId} postId={postId} />
     ))
   } else if (postStatus === 'error') {
